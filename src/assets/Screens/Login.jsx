@@ -31,7 +31,7 @@ let userLogin = await loginUser({
   password:data.password,
 })
 console.log(userLogin);
-navigate('/')
+navigate('/dashboard')
   } catch (error) {
     console.error(error)
   }
@@ -47,9 +47,9 @@ navigate('/')
 <>
 
 
+<h1 className='text-center mt-10 text-4xl font-bold'>Login</h1>
 
 <form onSubmit={handleSubmit(loginUserFromFirebase)} className='m-[auto] mt-[5rem] w-[20vw] text-center'>
-
   
 {/* Email */}
 

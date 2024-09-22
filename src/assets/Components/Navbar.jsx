@@ -7,7 +7,15 @@ const Navbar = () => {
 <>
 
 
-<div className='flex justify-center gap-5 m-5'>
+
+
+   <div className="navbar bg-primary flex justify-between" >
+    <div>
+
+  <a className="btn btn-ghost text-xl text-white">Personal Blogging App</a>
+    </div>
+
+  <div className='flex justify-center text-white gap-7 mr-5'>
      <h5><Link to='/'>Home</Link></h5>
      <h5><Link to='dashboard'>Dashboard</Link></h5>
      <h5><Link to='profile'>profile</Link></h5>
@@ -16,7 +24,7 @@ const Navbar = () => {
      {/* <h5 className='cursor-pointer'>Logout</h5> */}
    </div>
 
-
+</div>
 
 </>
 )

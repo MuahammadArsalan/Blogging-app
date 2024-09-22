@@ -48,6 +48,8 @@ navigate('/login')
 
 <>
 
+<h1 className='text-center mt-10 text-4xl font-bold'>Register</h1>
+
 
 <form  onSubmit={loginUserFromFirebase} className='m-[auto] mt-[5rem] w-[20vw] text-center'>
 
