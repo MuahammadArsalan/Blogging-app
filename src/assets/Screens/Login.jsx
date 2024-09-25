@@ -26,10 +26,11 @@ let loginUserFromFirebase = async(data ,e)=>{
   
   try {
     
-let userLogin = await loginUser({
-  email:data.email,
-  password:data.password,
-})
+    let userLogin = await loginUser({
+      email:data.email,
+      password:data.password,
+    })
+    // delete password.current.value
 console.log(userLogin);
 navigate('/dashboard')
   } catch (error) {

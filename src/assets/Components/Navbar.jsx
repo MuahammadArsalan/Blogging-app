@@ -51,6 +51,16 @@ let logout = async() => {
 
   <div className='flex justify-center text-white gap-7 mr-5'>
 
+  <h5><Link to='/'>Home</Link></h5>
+     <h5><Link to='/dashboard'>Dashboard</Link></h5>
+     <h5><Link to='profile'>profile</Link></h5>
+     <h5><Link to='login'>Login</Link></h5>
+     <h5><Link to='register'>Register</Link></h5>
+
+     <h5 className='cursor-pointer' onClick={logout}>Logout</h5>
+
+{/* 
+
 {setUserIs  ? (
 <>
 
@@ -66,7 +76,7 @@ let logout = async() => {
      <h5><Link to='register'>Register</Link></h5>
 
 
-</>  }
+</>  } */}
 
    </div>
 
