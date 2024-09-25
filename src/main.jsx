@@ -30,17 +30,17 @@ const router = createBrowserRouter(
         },
         {
           path:"dashboard",
-          // element:<ProtectedRoutes component={<Dashboard />} />
-          element:<Dashboard/>
+          element:<ProtectedRoutes component={<Dashboard />} />
+          // element:<Dashboard/>
         },{
           path:"profile",
-          // element:<ProtectedRoutes component={<Profile/>} />
-        element:<Profile/>
+          element:<ProtectedRoutes component={<Profile/>} />
+        // element:<Profile/>
       },
       {
         path:"singleuser",
-        // element:<ProtectedRoutes component={<SingleUser/>} />
-        element:<SingleUser/>
+        element:<ProtectedRoutes component={<SingleUser/>} />
+        // element:<SingleUser/>
         }
       ]
     }
