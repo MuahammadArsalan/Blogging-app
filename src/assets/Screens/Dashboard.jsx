@@ -7,17 +7,19 @@ import { onAuthStateChanged } from 'firebase/auth';
 function Dashboard() {
 
 let [Blogs , setBlogs] = useState([])
-let [BlogsFromFireBase, setBlogsFromFireBase] = useState([])
+let [getUserInfo, setgetUserInfo] = useState([])
 
+
+//get Blogs from firebase 
 
 useEffect(() => {
 try {
   
   onAuthStateChanged(auth , async(user)=>{
     if(user){
-      console.log(user.uid)
+      // console.log(user.uid)
       let uid = user.uid
-      const BlogsData = await getData("Blogs" , uid)
+      const BlogsData = await getData(`Blogs`  , uid)
       console.log(BlogsData)
       setBlogs([...BlogsData])
     }
@@ -27,6 +29,29 @@ try {
   
 }
 }, []);
+
+
+//get user information from firebase 
+
+    
+    
+  // useEffect(()=>{
+
+   
+
+onAuthStateChanged(auth,async (user)=>{
+  if(user){
+    const get  = await getData('users' , user.uid)
+console.log(get);
+setgetUserInfo([...get])
+console.log(getUserInfo);
+
+  }
+})
+  // },[])
+  
+
+
 
 
 
@@ -64,34 +89,15 @@ console.log(Blogs);
 
 
 
-// data.title = ''
-// data.description = ''
-
-// reset();
 } catch (error) {
     console.log(error);
     
   }
 
   
-  data.title = ''
-  data.description = ''
 }
 
 
-// get data from firesstore
-
-// useEffect(() => {
-//   onAuthStateChanged (auth,async(user) => {
-//     if(user){
-//       console.log(user.uid);
-//      let data = await getData("Blogs" ,user.uid) 
-    
-//     console.log(data);
-    
-//     }
-//   })
-// } , [])
 
 
 
@@ -100,7 +106,7 @@ console.log(Blogs);
 return (
   
   < >
-<div style={{width:"100vw",height:"400vh"}} className='bg-base-300'>
+<div style={{width:"100vw",height:"max-content"}} className='bg-base-300'>
 
   <h1 className='font-bold text-4xl p-6 text-center'>Dashboard</h1>
 
@@ -136,7 +142,7 @@ return (
 
 {Blogs.length > 0 ? Blogs.map((item , index)=>{
 
-return  <div className='w-[60vw]'  style={{
+return  <div key={index} className='w-[60vw]'  style={{
   // border:"1px solid grey",
   border:"none",
   backgroundColor:"white",
@@ -160,7 +166,7 @@ return  <div className='w-[60vw]'  style={{
 </div>
 
 
-}): <h1  className='font-bold text-5xl p-6 text-center'>No Blogs Found...</h1> }
+}) : <h1  className='font-bold text-5xl p-6 text-center'>No Blog Found..</h1> }
 
 
 
