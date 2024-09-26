@@ -37,18 +37,35 @@ try {
     
   // useEffect(()=>{
 
+    // },[])
    
 
-onAuthStateChanged(auth,async (user)=>{
-  if(user){
-    const get  = await getData('users' , user.uid)
-console.log(get);
-setgetUserInfo([...get])
-console.log(getUserInfo);
 
+  async  function get(){
+   try {
+    const abc  = await getData("users" , auth.currentUser.uid
+);
+   console.log(abc);
+   
+    
+   } catch (error) {
+    console.log(error);
+    
+   }
   }
-})
-  // },[])
+  get()
+
+
+
+// onAuthStateChanged(auth,async (user)=>{
+//   if(user){
+//     const get  = await getData('users' , user.uid)
+// console.log(get);
+// setgetUserInfo([...get])
+// console.log(getUserInfo)
+
+//   }
+// })
   
 
 

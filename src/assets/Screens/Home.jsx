@@ -3,6 +3,7 @@ import { auth, getAllData } from '../Configuration/FirebaseMethod'
 import { useNavigate } from 'react-router-dom'
 import { onAuthStateChanged } from 'firebase/auth'
 
+
 function Home() {
   
 const [AllBlogsFromFirestore ,setAllBlogs ] =useState([])
@@ -12,11 +13,14 @@ let navigate =  useNavigate()
 
   
   function profileParJanaH(){
+
+
     onAuthStateChanged(auth , (user)=>{
       if(user){
         // console.log(user.uid);
 navigate('/profile')        
 }else{
+  alert('plz Login to switch profile ')
   navigate('/login')
 }
 
@@ -25,7 +29,19 @@ navigate('/profile')
   }
   
 const post = () => {
-  navigate('/dashboard')
+
+  onAuthStateChanged(auth , (user)=>{
+    if(user){
+      // console.log(user.uid);
+navigate('/dashboard')
+}else{
+alert('plz Login for posting blogs ')
+navigate('/login')
+}
+
+
+  })
+
 }  
 
 useEffect(()=>{
@@ -75,7 +91,7 @@ return <div key={item.uid}  className='w-[60vw]'  style={{
   <p className='mt-3'>{item.description}</p>
 <div className='mt-5'>
 
-<button className='btn btn-primary w-[15rem] ml-0 h-[2rem]' onClick={()=> profileParJanaH()}>See All your posted Blogs</button>
+<button className='btn btn-primary w-[13rem] ml-0 h-[2rem]' onClick={()=> profileParJanaH()}>See All your posted Blogs</button>
 </div>
 </div>
 

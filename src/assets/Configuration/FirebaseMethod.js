@@ -34,7 +34,7 @@ import app from "./FirebaseConfig.js"
     return new Promise((resolve, reject) => {
       createUserWithEmailAndPassword(auth, obj.email, obj.password)
         .then(async (res) => {
-          resolve((obj.id = res.user.uid));
+          resolve((obj.uid = res.user.uid));
           delete obj.password
           await addDoc(collection(db, "users"), obj)
             .then((res) => {

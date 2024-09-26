@@ -41,7 +41,9 @@ navigate('/login')
 
 }
 
-
+function register(){
+  navigate('/login')
+}
 
 
   return (
@@ -111,7 +113,10 @@ navigate('/login')
 
 </label>
 
-<button type='submit' className='btn btn-primary mt-10 w-[7rem]'>Register</button>
+<p className='cursor-pointer' onClick={register}>Already register? Login. </p> <br />
+
+
+<button type='submit' className='btn btn-primary mt-11 w-[7rem]'>Register</button>
 
 
 

@@ -2,6 +2,8 @@ import React, { useEffect, useState } from 'react'
 import { auth, getData } from '../Configuration/FirebaseMethod'
 import { useNavigate } from 'react-router-dom'
 
+import '/profile.css'
+
 function Profile() {
 const [profileBlogs , setProfileBlogs ] =  useState([])
 
@@ -25,7 +27,7 @@ getForProfilePage()
 
   return (
 <>
-<div className='bg-base-300'>
+<div className='bg-base-300 main-div'>
 
 
 <h1 className='ml-20 font-semibold text-3xl p-6'>All Blogs from this User</h1>
@@ -50,12 +52,12 @@ return <div key={item.uid}  className='w-[60vw]'  style={{
   <p className='mt-3'>{item.description}</p>
 <div className='mt-5'>
 
-<button className='btn btn-primary w-[15rem] ml-0 h-[2rem]' onClick={()=> BackJanaH()}>Back to All</button>
+<button className='btn btn-primary w-[7rem] ml-0 h-[2rem]' onClick={()=> BackJanaH()}>Back to All</button>
 </div>
 </div>
 
 
-}):   <h1  className='font-bold text-5xl p-6 text-center'>Loading..</h1>
+}):   <h1  className='font-bold text-5xl p-6 text-center'>Loading...</h1>
 }
 
 

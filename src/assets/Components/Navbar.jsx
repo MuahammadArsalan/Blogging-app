@@ -46,7 +46,7 @@ let logout = async() => {
     
     <div>
 
-  <a className="btn btn-ghost text-xl text-white">Personal Blogging App</a>
+  <a className="btn btn-ghost text-xl text-white">Blogging App</a>
     </div>
 
   <div className='flex justify-center text-white gap-7 mr-5'>

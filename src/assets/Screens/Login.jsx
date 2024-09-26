@@ -2,6 +2,7 @@ import React, { useRef, useState } from 'react'
 import { useForm } from "react-hook-form"
 import { loginUser } from '../Configuration/FirebaseMethod'
 import { useNavigate } from 'react-router-dom'
+import '/profile.css'
 
 
 
@@ -20,8 +21,14 @@ let email = useRef()
 let password = useRef()
 
 
+function notAuser(){
+
+  navigate('/register')
+}
+
 let loginUserFromFirebase = async(data ,e)=>{
   e.preventDefault()
+
   console.log(data);
   
   try {
@@ -48,9 +55,9 @@ navigate('/dashboard')
 <>
 
 
-<h1 className='text-center mt-10 text-4xl font-bold'>Login</h1>
+<h1 className='text-center mt-10 text-4xl font-bold main-div' >Login</h1>
 
-<form onSubmit={handleSubmit(loginUserFromFirebase)} className='m-[auto] mt-[5rem] w-[20vw] text-center'>
+<form onSubmit={handleSubmit(loginUserFromFirebase)} className='main-div m-[auto] mt-[5rem] w-[20vw] text-center'>
   
 {/* Email */}
 
@@ -91,7 +98,8 @@ navigate('/dashboard')
 </label>
  <br />
 
-<button className='btn btn-primary w-[7rem]'>Login</button>
+ <p className='cursor-pointer' onClick={notAuser}>Not a User? Register. </p> <br />
+<button className='btn btn-primary w-[7rem] mt-1'  >Login</button>
 
 </form>
 
