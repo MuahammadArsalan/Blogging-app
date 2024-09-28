@@ -1,6 +1,6 @@
 import { onAuthStateChanged } from 'firebase/auth';
 import React, { useEffect, useState } from 'react'
-import { Link, useNavigate } from 'react-router-dom'
+import { Link, NavLink, useNavigate } from 'react-router-dom'
 import { auth, signOutUser } from '../Configuration/FirebaseMethod';
 import { signOut } from "firebase/auth";
 
@@ -16,8 +16,12 @@ const Navbar = () => {
               setUserIs(true)
               return
           }
+          else{
+            setUserIs(false)
+
+          }
       })
-  }, [])
+  }, [userIs])
 
 
 let logout = async() => {
@@ -25,12 +29,16 @@ let logout = async() => {
  await signOut(auth).then(() => {
     console.log('Sign-out successful.');
     setIsUser(false)
+    alert('Logout Successfully!')
     
   }).catch((error) => {
     // An error happened.
   });
 
   navigate('/login')
+}
+let bloggingAppClickNav = () => {
+  navigate('/')
 }
 
   return (
@@ -46,21 +54,21 @@ let logout = async() => {
     
     <div>
 
-  <a className="btn btn-ghost text-xl text-white">Blogging App</a>
+   <a className="btn btn-ghost text-xl text-white" onClick={bloggingAppClickNav}>Blogging App</a>
     </div>
 
   <div className='flex justify-center text-white gap-7 mr-5'>
 
-  <h5><Link to='/'>Home</Link></h5>
-     <h5><Link to='/dashboard'>Dashboard</Link></h5>
-     <h5><Link to='profile'>profile</Link></h5>
-     <h5><Link to='login'>Login</Link></h5>
-     <h5><Link to='register'>Register</Link></h5>
+  <h5><NavLink to='/'>Home</NavLink></h5>
+     <h5><NavLink to='/dashboard'>Dashboard</NavLink></h5>
+     <h5><NavLink to='profile'>profile</NavLink></h5>
+     <h5><NavLink to='login'>Login</NavLink></h5>
+     <h5><NavLink to='register'>Register</NavLink></h5>
 
      <h5 className='cursor-pointer' onClick={logout}>Logout</h5>
 
-{/* 
 
+{/*
 {setUserIs  ? (
 <>
 
@@ -69,14 +77,20 @@ let logout = async() => {
      <h5><Link to='profile'>profile</Link></h5>
      <h5 className='cursor-pointer' onClick={logout}>Logout</h5>
 
-</> ): <>
+</> ):(
+
+  <>
 
 <h5><Link to='/'>Home</Link></h5>
      <h5><Link to='login'>Login</Link></h5>
      <h5><Link to='register'>Register</Link></h5>
 
 
-</>  } */}
+</>
+) 
+}
+      */}
+
 
    </div>
 

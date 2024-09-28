@@ -1,8 +1,9 @@
 import React, { useRef, useState } from 'react'
 import { useForm } from "react-hook-form"
-import { loginUser } from '../Configuration/FirebaseMethod'
+import { auth, loginUser } from '../Configuration/FirebaseMethod'
 import { useNavigate } from 'react-router-dom'
 import '/profile.css'
+import { onAuthStateChanged } from 'firebase/auth'
 
 
 
@@ -26,20 +27,18 @@ function notAuser(){
   navigate('/register')
 }
 
-let loginUserFromFirebase = async(data ,e)=>{
-  e.preventDefault()
+let loginUserFromFirebase = async(data )=>{
 
-  console.log(data);
+  console.log(data)
   
   try {
     
     let userLogin = await loginUser({
       email:data.email,
-      password:data.password,
+      password:data.password
     })
-    // delete password.current.value
-console.log(userLogin);
-navigate('/dashboard')
+    console.log(userLogin)
+    navigate('/')
   } catch (error) {
     console.error(error)
   }
@@ -47,6 +46,15 @@ navigate('/dashboard')
 }
 
 
+function checkAuth(){
+onAuthStateChanged(auth , (user)=>{
+  if(user){
+console.log(user.uid)
+navigate('/dashboard')
+  }
+})
+
+}
 
 
 
@@ -99,7 +107,7 @@ navigate('/dashboard')
  <br />
 
  <p className='cursor-pointer' onClick={notAuser}>Not a User? Register. </p> <br />
-<button className='btn btn-primary w-[7rem] mt-1'  >Login</button>
+<button className='btn btn-primary w-[7rem] mt-1'  type='submit'onClick={checkAuth} >Login</button>
 
 </form>
 
@@ -122,8 +130,9 @@ export default Login
 
 // import React, { useRef } from 'react'
 // import { useForm } from "react-hook-form"
-// import { loginUser } from '../Configuration/FirebaseMethod'
+// import { auth, loginUser } from '../Configuration/FirebaseMethod'
 // import { useNavigate } from 'react-router-dom'
+// import { onAuthStateChanged } from 'firebase/auth'
 
 // const Login = () => {
 //   const {
@@ -135,7 +144,7 @@ export default Login
 
 //   const navigate = useNavigate()
 
-//   const loginUserFromFirebase = async (data) => {
+//   const Customlogin = async (data) => {
 //     console.log(data)
 //     try {
 //       const userLogin = await loginUser({
@@ -143,23 +152,38 @@ export default Login
 //         password: data.password
 //       })
 //       console.log(userLogin)
-//       navigate('')
+//       navigate('/dashboard')
 
 //     } catch (error) {
 //       console.error(error)
 //     }
 //   }
+
+// function checkauth(){
+//   onAuthStateChanged(auth , (user)=> {
+// if (user){
+// console.log(user.uid)
+// navigate('/dashboard')
+// }
+
+//   })
+// }
+
+
 //   return (
 //     <div>
+
 //       <h1>Login</h1>
-//       <form onSubmit={handleSubmit(loginUserFromFirebase)}>
+      
+//       <form onSubmit={handleSubmit(Customlogin)}>
+
 //         <input type="email" placeholder='enter your email' {...register("email", { required: true })} /><br />
 //         {errors.email && <span className='text-danger'>This field is required</span>}
 //          <br />
 //         <input type="password" placeholder='enter your password' {...register("password", { required: true })} /><br />
 //         {errors.password && <span className='text-danger'>This field is required</span>}
 //          <br />
-//         <button type='submit'>login</button>
+//         <button type='submit' onClick={checkauth}>login</button>
 //       </form>
 //     </div>
 //   )

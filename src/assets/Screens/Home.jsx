@@ -7,6 +7,7 @@ import { onAuthStateChanged } from 'firebase/auth'
 function Home() {
   
 const [AllBlogsFromFirestore ,setAllBlogs ] =useState([])
+const [details , setDetails ] =  useState([])
 
 let navigate =  useNavigate()
 
@@ -54,7 +55,26 @@ setAllBlogs([...allBlogs])
   }
 getAllBlogs()
 
+
+
 },[])
+
+
+useEffect(() => {
+
+  async function  avatarImage(){
+  
+    let getDetails = await getAllData('users')
+    // console.log(getDetails)
+    setDetails([...getDetails ])
+    console.log(details)
+  }
+  
+  // avatarImage()
+  } , []);
+  
+
+
 
 
 
@@ -86,6 +106,33 @@ return <div key={item.uid}  className='w-[60vw]'  style={{
   flexWrap:"wrap",
   padding:"45px"
 }}>
+
+{/*  Avatar wala kaam h is me jitne objects aarahe hn wo screen pr saare cardpar sara render ho raha h */}
+
+{/* 
+
+{
+  details.length > 0 ? details.map((it)=>{
+return <div>
+
+<div className="avatar">
+  <div className="w-12 rounded-xl">
+    <img src={it.profileImage
+} />
+
+  </div>
+
+<p className='danger ml-5'>{it.fullName}  : {it.email} </p>
+</div>
+
+
+
+</div>
+  }) : <h1>akdjd</h1>
+} */}
+
+
+
   <h1 className='font-semibold text-xl'>{item.title}</h1>
   <br />
   <p className='mt-3'>{item.description}</p>
