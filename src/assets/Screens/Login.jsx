@@ -29,7 +29,6 @@ function notAuser(){
 
 let loginUserFromFirebase = async(data )=>{
 
-  console.log(data)
   
   try {
     
@@ -37,9 +36,11 @@ let loginUserFromFirebase = async(data )=>{
       email:data.email,
       password:data.password
     })
+    // delete data.password
     console.log(userLogin)
     navigate('/')
   } catch (error) {
+   alert(error)
     console.error(error)
   }
   

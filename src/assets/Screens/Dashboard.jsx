@@ -89,7 +89,7 @@ addBlog(data)
 
 async function addBlog (data){
   // console.log(data.title);
-  // console.log(data.description);
+  // console.log(data.description)
   try {
     
     let send = await sendData({
@@ -106,7 +106,8 @@ Blogs.push({
 })
 setBlogs([...Blogs])
 console.log(Blogs);
-
+data.title = ''
+data.description = ''
 
 
 } catch (error) {
@@ -157,8 +158,8 @@ async function  avatarImage(){
   setDetails([...getDetails ])
   console.log(details)
 }
-
 avatarImage()
+
 } , [])
 
 let navigate = useNavigate()
@@ -225,7 +226,7 @@ return  <div key={index} className='w-[60vw]'  style={{
 {  details.length > 0 ? details.map((it)=>{
 return <div>
 
-<div className="avatar cursor-pointer" onClick={singleInfo}>
+<div className="avatar cursor-pointer rounded-full" onClick={singleInfo}>
   <div className="w-12 rounded-xl">
     <img src={it.profileImage
 } />
@@ -238,7 +239,7 @@ return <div>
 
 
 </div>
-  }) : <h1>Loaging...</h1>}
+  }) : <h1>Loading...</h1>}
 
   <div className='flex flex-wrap'>
 

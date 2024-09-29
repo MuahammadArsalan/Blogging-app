@@ -11,6 +11,9 @@ import { useNavigate } from 'react-router-dom'
 
 function SingleUser() {
 
+let [hour,setHour] = useState(new Date().getHours())
+let [mint,setMint] = useState(new Date().getMinutes())
+
 const [data , setData] = useState([])
 const [sec , setSec] = useState([])
 
@@ -66,7 +69,7 @@ return <div className="m-auto flex justify-center mt-8 card bg-base-100 w-96 sha
     <p>Email : {item.email}</p>
     <p>Date :  {new Date().getDate()}-{new Date().getMonth()+1}-{new Date().getFullYear()}</p>
     {/* <p>{(new Date().getTime() / 1000 / 60 /60 /24 /365.).toFixed(2) }</p> */}
-<p>Time : {new Date().getHours()} : {new Date().getMinutes()} </p> 
+<p>Time : {hour} : {mint} </p> 
     <div className="card-actions">
       <button className="btn btn-primary mt-2" onClick={back}>Back</button>
     </div>

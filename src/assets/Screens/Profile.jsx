@@ -51,7 +51,7 @@ function singleInfo(){
 
 {details.length > 0 ?details.map((iterator)=>{
   return <h1 className='ml-20 font-semibold text-3xl p-6'>All Blogs from {iterator.fullName}</h1>
-}): <h1>Loging....</h1> 
+}): <h1>Loading....</h1> 
 }
 
 
