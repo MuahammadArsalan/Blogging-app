@@ -50,10 +50,10 @@ function register(){
 
 <>
 
-<h1 className='text-center mt-10 text-4xl font-bold'>Register</h1>
+<h1 className='text-center mt-10 text-4xl font-bold main-div'>Register</h1>
 
 
-<form  onSubmit={loginUserFromFirebase} className='m-[auto] mt-[5rem] w-[20vw] text-center'>
+<form  onSubmit={loginUserFromFirebase} className='main-div m-[auto] mt-[5rem] w-[20vw] text-center'>
 
 {/* FullName */}
 
@@ -101,7 +101,7 @@ function register(){
       d="M14 6a4 4 0 0 1-4.899 3.899l-1.955 1.955a.5.5 0 0 1-.353.146H5v1.5a.5.5 0 0 1-.5.5h-2a.5.5 0 0 1-.5-.5v-2.293a.5.5 0 0 1 .146-.353l3.955-3.955A4 4 0 1 1 14 6Zm-4-2a.75.75 0 0 0 0 1.5.5.5 0 0 1 .5.5.75.75 0 0 0 1.5 0 2 2 0 0 0-2-2Z"
       clipRule="evenodd" />
   </svg>
-  <input type="password" className="grow"   ref={password}/>
+  <input type="password" className="grow" placeholder='password'  ref={password}/>
 </label>
  <br />
 {/* Profile Image */}
@@ -113,10 +113,10 @@ function register(){
 
 </label>
 
-<p className='cursor-pointer' onClick={register}>Already register? Login. </p> <br />
+<p className='cursor-pointer mt-5' onClick={register}>Already register? Login. </p> <br />
 
 
-<button type='submit' className='btn btn-primary mt-11 w-[7rem]'>Register</button>
+<button type='submit' className='btn btn-primary mt-0 w-[7rem]'>Register</button>
 
 
 

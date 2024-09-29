@@ -1,14 +1,18 @@
 import { data } from 'autoprefixer';
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import { useForm } from "react-hook-form"
-import { auth, getData, sendData } from '../Configuration/FirebaseMethod';
+import { auth, deleteDocument, getData, sendData } from '../Configuration/FirebaseMethod';
 import { onAuthStateChanged } from 'firebase/auth';
+import { useNavigate } from 'react-router-dom';
 
 function Dashboard() {
 
+
+let [btn , setBtn] = useState('Publish Blog')
 let [Blogs , setBlogs] = useState([])
 let [getUserInfo, setgetUserInfo] = useState([])
-
+let title= useRef('')
+let desc= useRef('')
 
 //get Blogs from firebase 
 
@@ -45,7 +49,7 @@ try {
    try {
     const abc  = await getData("users" , auth.currentUser.uid
 );
-   console.log(abc);
+  //  console.log(abc);
    
     
    } catch (error) {
@@ -94,7 +98,7 @@ async function addBlog (data){
       description:data.description,
       uid:auth.currentUser.uid
     } , 'Blogs')
-    console.log(send)
+    // console.log(send)
 
 
 Blogs.push({
@@ -119,24 +123,70 @@ console.log(Blogs);
 
 
 
+function publish(){
+  console.log(title.current.value);
+  console.log(desc.current.value);
+  
+}
+
+// useEffect(()=>{
+  
+//   onAuthStateChanged(auth,(user)=>{
+//     async function dele(){
+//       if (user) {
+//         let id =  user.uid
+//             let delObj = await deleteDocument(id ,'Blogs')
+//         console.log(delObj);
+        
+//       }
+
+//     }
+//   })    
+  
+  
+  
+
+// },[])
+
+const [details ,  setDetails] = useState([])
+
+useEffect(()=>{
+
+async function  avatarImage(){
+
+  let getDetails = await getData('users' , auth.currentUser.uid)
+  setDetails([...getDetails ])
+  console.log(details)
+}
+
+avatarImage()
+} , [])
+
+let navigate = useNavigate()
+function singleInfo(){
+navigate('/singleUser')
+}
 
 return (
   
   < >
 <div style={{width:"100vw",height:"max-content"}} className='bg-base-300'>
 
-  <h1 className='font-bold text-4xl p-6 text-center'>Dashboard</h1>
+  <h1 className='font-bold text-4xl p-6 text-center main-div'>Dashboard</h1>
+{/* publish blog div styling */}
 
+{/*  className='p-10 w-[60vw] m-auto h-[50vh] bg-white rounded-3xl ' */}
+<div className='flex justify-center align-middle main-div'>
 
-  <form onSubmit={handleSubmit(onSubmit)} className='p-10 w-[60vw] m-auto h-[50vh] bg-white rounded-3xl '>
+  <form onSubmit={handleSubmit(onSubmit)} >
 
-  <input className='p-4 ml-28 w-[30rem] h-[3rem] mt-5'   minLength={10} placeholder='Enter title'  style={{
+  <input className='p-4 ml-28 w-[30rem] h-[3rem] mt-5 rounded-2xl'  ref={title}  minLength={56} maxLength={60} placeholder='Enter title'  style={{
     border:"1px solid grey " ,
     
   }} {...register("title" , { required: true })}
   />  <br /> <br />
   {errors.exampleRequired && <span>This field is required</span>}
-  <textarea  placeholder='Whats in your mind'  minLength="100" className='w-[30rem] h-[6rem] align-text-top p-4  ml-28' style={{
+  <textarea  placeholder='Whats in your mind'  minLength="100" ref={desc} className='w-[30rem] max-h-fit align-text-top p-4  ml-28 rounded-2xl' style={{
     border:"1px solid grey"
 
   }}  {...register("description" , { required: true })}
@@ -144,15 +194,16 @@ return (
   {errors.exampleRequired && <span>This field is required</span>}
 <br /> <br />
 
-<button className='btn btn-primary m-auto text-center ml-28 mt-1 w-[10rem]' onClick={addBlog}>Publish Blog </button>
+<button className='btn btn-primary m-auto text-center ml-28 mt-1 w-[10rem] ' onClick={addBlog}>{btn} </button>
 
 </form>
+</div>
 
 
 
 
 
-<div>
+<div className='main-div'>
 
 <h1  className='font-bold text-3xl mt-8 ml-72'>My Blogs</h1>
 
@@ -171,13 +222,36 @@ return  <div key={index} className='w-[60vw]'  style={{
   flexWrap:"wrap",
   padding:"45px"
 }}>
-  <h1 className='font-semibold text-xl'>{item.title.toUpperCase() }</h1>
+
+{  details.length > 0 ? details.map((it)=>{
+return <div>
+
+<div className="avatar cursor-pointer" onClick={singleInfo}>
+  <div className="w-12 rounded-xl">
+    <img src={it.profileImage
+} />
+
+  </div>
+
+<p className='danger ml-5'>{it.fullName}  : {it.email} </p>
+</div>
+
+
+
+</div>
+  }) : <h1>Loaging...</h1>}
+
+  <div className='flex flex-wrap'>
+
+  <h1 className='font-semibold text-xl'>{item.title.toUpperCase()} </h1>
+  </div>
   <br />
   <p className='mt-3'>{item.description }</p>
 <div className='mt-5'>
 
-<button className='btn btn-primary w-[5rem] ml-0 h-[2rem]'>DELETE</button>
-<button className='btn btn-primary w-[5rem] ml-3 h-[2rem]'>EDIT</button>
+{/* <button className='btn btn-primary w-[5rem] ml-0 h-[2rem]'>DELETE</button> */}
+
+{/* <button className='btn btn-primary w-[5rem] ml-3 h-[2rem]'>EDIT</button> */}
 </div>
 
 </div>

@@ -34,7 +34,7 @@ async function  avatarImage(){
 }
 
 avatarImage()
-} , []);
+} , [])
 
 
 function singleInfo(){
@@ -49,7 +49,11 @@ function singleInfo(){
 <div className='bg-base-300 main-div'>
 
 
-<h1 className='ml-20 font-semibold text-3xl p-6'>All Blogs from this User</h1>
+{details.length > 0 ?details.map((iterator)=>{
+  return <h1 className='ml-20 font-semibold text-3xl p-6'>All Blogs from {iterator.fullName}</h1>
+}): <h1>Loging....</h1> 
+}
+
 
 {/* {profileBlogs && details.length > 0 ? profileBlogs && details.map((item)=>{ */}
 {profileBlogs.length > 0 ? profileBlogs.map((item)=>{
@@ -86,7 +90,7 @@ return <div>
 
 
 </div>
-  }) : <h1>akdjd</h1>
+  }) : <h1>Loaging...</h1>
 }
 
 

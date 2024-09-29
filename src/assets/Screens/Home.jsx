@@ -81,7 +81,7 @@ useEffect(() => {
 
   return (
 <>
-<div className='bg-base-300'>
+<div className='bg-base-300 main-div'>
 
 
 <div className="btn-div flex flex-wrap justify-evenly">
@@ -138,13 +138,13 @@ return <div>
   <p className='mt-3'>{item.description}</p>
 <div className='mt-5'>
 
-<button className='btn btn-primary w-[13rem] ml-0 h-[2rem]' onClick={()=> profileParJanaH()}>See All your posted Blogs</button>
+<button className='btn btn-primary w-[15rem] ml-0 h-[2rem]' onClick={()=> profileParJanaH()}>See All your posted Blogs</button>
 </div>
 </div>
 
 
 
-}) :  <h1  className='font-bold text-5xl p-6 text-center'>Loading..</h1>
+}) : AllBlogsFromFirestore.length === 0 ?  <h1  className='font-bold text-5xl p-6 text-center'>No Blog Found</h1> :<h1  className='font-bold text-5xl p-6 text-center'>Loading...</h1>
 
 }
 

@@ -48,7 +48,7 @@ let bloggingAppClickNav = () => {
 
 
 
-   <div className="navbar bg-primary flex justify-between" >
+   <div className="navbar bg-primary flex justify-between main-div" >
 
 
     
