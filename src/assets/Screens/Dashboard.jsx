@@ -8,7 +8,6 @@ import { useNavigate } from 'react-router-dom';
 function Dashboard() {
 
 
-let [btn , setBtn] = useState('Publish Blog')
 let [Blogs , setBlogs] = useState([])
 let [getUserInfo, setgetUserInfo] = useState([])
 let title= useRef('')
@@ -194,7 +193,7 @@ return (
   {errors.exampleRequired && <span>This field is required</span>}
 <br /> <br />
 
-<button className='btn btn-primary m-auto text-center ml-28 mt-1 w-[10rem] ' onClick={addBlog}>{btn} </button>
+<button className='btn btn-primary m-auto text-center ml-28 mt-1 w-[10rem] ' onClick={addBlog}>Publish Blog </button>
 
 </form>
 </div>

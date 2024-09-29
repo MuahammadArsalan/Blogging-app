@@ -82,11 +82,12 @@ navigate('/dashboard')
   </svg>
   {/* <input {...register("firstName")} */}
   <input type="email" placeholder='enter your email' {...register("email", { required: true })} /><br />
-  {errors.email && <span className='text-danger'>This field is required</span>}
   {/* <input type="text" className="grow" placeholder="Email"  ref={email}/> */}
 </label>
-<br />
+  {errors.email && <span className='text-red-500 text-[0.8rem]'>This field is required</span>}
 
+<br />
+<br />
 
 {/* Password */}
 
@@ -102,11 +103,13 @@ navigate('/dashboard')
       clipRule="evenodd" />
   </svg>
   <input type="password" placeholder='enter your password' {...register("password", { required: true })} /><br />
-  {errors.password && <span className='text-danger'>This field is required</span>}  {/* <input type="password" placeholder='Password' className="grow"   ref={password}/> */}
+
+   {/*  <input type="password" placeholder='Password' className="grow"   ref={password}/> */}
 </label>
+   {errors.password && <span className=' text-red-500 text-[0.8rem]'>This field is required</span>}
  <br />
 
- <p className='cursor-pointer' onClick={notAuser}>Not a User? Register. </p> <br />
+ <p className='cursor-pointer mt-4' onClick={notAuser}>Not a User? Register. </p> <br />
 <button className='btn btn-primary w-[7rem] mt-1'  type='submit'onClick={checkAuth} >Login</button>
 
 </form>
